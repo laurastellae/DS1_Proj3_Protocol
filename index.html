@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Arrangement as Instruction</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+
+    :root {
+      --black: #181818;
+      --white: #f7f7f7;
+      --paper: #f2f2f2;
+      --text: #111111;
+      --muted: #4a4a4a;
+      --accent: #ff5b61;
+      --line: #222222;
+      --gray-card: #e8e8e8;
+      --dark-gray: #3a3a3a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      background: var(--paper);
+      color: var(--text);
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    /* =========================
+       00 HERO
+    ========================= */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      padding: 72px 36px 48px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -56px;
+      top: 98px;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: var(--accent);
+      z-index: 0;
+    }
+
+    .hero-meta {
+      position: relative;
+      z-index: 1;
+      align-self: flex-end;
+      text-align: right;
+      font-size: 17px;
+      line-height: 1.45;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 42px;
+    }
+
+    .hero-title {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: clamp(48px, 12vw, 96px);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-place {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-intro {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      max-width: 620px;
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-intro strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    /* =========================
+       01 BEFORE
+    ========================= */
+
+    .before-section {
+      background: var(--paper);
+      color: var(--text);
+      padding: 24px 0 0;
+      border-top: 6px solid var(--black);
+    }
+
+    .before-header {
+      padding: 0 22px 18px;
+    }
+
+    .section-number {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 2px;
+    }
+
+    .before-heading-wrap {
+      position: relative;
+    }
+
+    .before-title {
+      margin: 0;
+      font-size: clamp(32px, 9vw, 68px);
+      line-height: 0.9;
+      font-weight: 900;
+      letter-spacing: -0.065em;
+      text-transform: uppercase;
+    }
+
+    .before-title-small {
+      position: absolute;
+      right: 18px;
+      bottom: -16px;
+      font-size: clamp(18px, 5vw, 34px);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .before-main-image {
+      margin-top: 34px;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .caption {
+      text-align: center;
+      margin: 12px 0 12px;
+      font-size: 8px;
+      font-weight: 400;
+      letter-spacing: 0.45em;
+      color: #555;
+      text-transform: uppercase;
+    }
+
+    .text-block {
+      padding: 0 22px;
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #222;
+    }
+
+    .protocol-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 34px 22px 30px;
+      text-align: center;
+    }
+
+    .protocol-card h3 {
+      margin: 0 0 16px;
+      font-size: 10px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+    }
+
+    .protocol-card p {
+      margin: 0;
+      font-size: 10px;
+      line-height: 1.32;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+    }
+
+    .problems-title {
+      text-align: center;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.32em;
+      margin: 10px 0 12px;
+      text-transform: uppercase;
+    }
+
+    .problem-image-wrap {
+      background: var(--black);
+      padding: 12px 0;
+    }
+
+    .problem-image-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .before-bottom-text {
+      padding: 20px 22px 46px;
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #222;
+    }
+
+    /* =========================
+       02 INTERVENTION
+    ========================= */
+
+    .intervention-section {
+      background: var(--paper);
+      color: var(--text);
+      padding: 18px 8px 44px;
+    }
+
+    .intervention-topline {
+      height: 2px;
+      background: var(--black);
+      margin: 0 12px 8px;
+    }
+
+    .intervention-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      padding: 0 12px;
+    }
+
+    .intervention-number {
+      font-size: 19px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      text-align: right;
+    }
+
+    .intervention-title {
+      margin: 0;
+      padding: 0 12px;
+      font-size: clamp(48px, 12vw, 82px);
+      line-height: 0.9;
+      font-weight: 900;
+      letter-spacing: -0.065em;
+      text-transform: uppercase;
+    }
+
+    .intervention-intro {
+      padding: 22px 12px 8px;
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.38;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: #222;
+    }
+
+    .intervention-card {
+      background: var(--gray-card);
+      border-radius: 9px;
+      margin: 14px 0;
+      padding: 12px 12px 14px;
+    }
+
+    .intervention-card .card-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      color: #222;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+    }
+
+    .intervention-card h3 {
+      margin: 0 0 3px;
+      font-size: 14px;
+      line-height: 1.25;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+    }
+
+    .intervention-card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 300;
+      letter-spacing: -0.035em;
+      color: #222;
+    }
+
+    .picture-toggle {
+      margin-top: 8px;
+    }
+
+    .picture-toggle summary {
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+      width: fit-content;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .picture-toggle summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .picture-toggle summary::before {
+      content: "▶";
+      display: inline-block;
+      margin-right: 8px;
+      letter-spacing: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .picture-toggle[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .picture-toggle img {
+      margin-top: 12px;
+      width: 100%;
+      border-radius: 0;
+      display: block;
+    }
+
+    /* =========================
+       03 OBSERVATION
+    ========================= */
+
+    .observation-section {
+      background: var(--paper);
+      color: var(--text);
+      padding: 18px 0 0;
+    }
+
+    .observation-topline {
+      height: 2px;
+      background: var(--black);
+      margin: 0 18px 28px;
+    }
+
+    .observation-number {
+      padding: 0 18px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .observation-title {
+      margin: 0;
+      padding: 0 18px;
+      font-size: clamp(38px, 10vw, 72px);
+      line-height: 0.9;
+      font-weight: 900;
+      letter-spacing: -0.065em;
+      text-transform: uppercase;
+    }
+
+    .observation-intro {
+      padding: 22px 18px 18px;
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.38;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: #222;
+    }
+
+    .observation-grid-figma {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+
+    .observation-text-box {
+      min-height: 154px;
+      padding: 20px 13px;
+    }
+
+    .observation-text-box h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .observation-text-box p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.32;
+      font-weight: 300;
+      letter-spacing: -0.035em;
+    }
+
+    .light-box {
+      background: var(--paper);
+      color: var(--text);
+    }
+
+    .dark-box {
+      background: var(--dark-gray);
+      color: var(--white);
+    }
+
+    .dark-box p {
+      color: var(--white);
+    }
+
+    .observation-img {
+      width: 100%;
+      height: 154px;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    .observation-wide-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+
+    .observation-wide-text {
+      background: var(--paper);
+      color: var(--text);
+      padding: 16px 16px 18px;
+      min-height: 170px;
+    }
+
+    .observation-wide-text h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .observation-wide-text p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.28;
+      font-weight: 300;
+      letter-spacing: -0.035em;
+    }
+
+    .observation-wide-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    /* =========================
+       04 CONCLUSION
+    ========================= */
+
+    .conclusion-section {
+      background: var(--black);
+      color: var(--white);
+      padding: 54px 20px 88px;
+      min-height: 330px;
+    }
+
+    .conclusion-number {
+      text-align: right;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .conclusion-title {
+      margin: 0;
+      font-size: clamp(40px, 10vw, 76px);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -0.065em;
+    }
+
+    .conclusion-text {
+      margin: 18px 0 0;
+      max-width: 560px;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 300;
+      letter-spacing: -0.035em;
+      color: #e6e6e6;
+    }
+
+    /* =========================
+       05 VISITOR PARTICIPATION
+    ========================= */
+
+    .participation-section {
+      background: var(--paper);
+      color: var(--text);
+      padding: 14px 10px 0;
+    }
+
+    .participation-number {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .participation-title {
+      margin: 0;
+      font-size: clamp(34px, 9vw, 64px);
+      line-height: 0.92;
+      font-weight: 900;
+      letter-spacing: -0.065em;
+    }
+
+    .participation-intro {
+      margin: 14px 0 10px;
+      font-size: 9.5px;
+      line-height: 1.35;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      max-width: 360px;
+    }
+
+    .arrangement-form {
+      background: var(--gray-card);
+      border-radius: 8px;
+      padding: 10px 12px 12px;
+      margin: 8px 0 18px;
+    }
+
+    .arrangement-form label {
+      display: block;
+      font-size: 7px;
+      font-weight: 400;
+      letter-spacing: 0.42em;
+      margin-bottom: 4px;
+      color: #111;
+    }
+
+    .arrangement-form input {
+      width: 100%;
+      height: 20px;
+      border: 1px solid #bcbcbc;
+      border-radius: 2px;
+      background: #f7f7f7;
+      padding: 3px 8px;
+      margin-bottom: 8px;
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+    }
+
+    .arrangement-form input::placeholder {
+      color: #777;
+      text-align: center;
+    }
+
+    .arrangement-form button {
+      display: block;
+      width: 42%;
+      height: 18px;
+      margin: 0 auto;
+      border: none;
+      border-radius: 2px;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      font-size: 7px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .arrangement-form button:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .arrangement-stage {
+      position: relative;
+      width: calc(100% + 20px);
+      margin-left: -10px;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .arrangement-stage img {
+      width: 100%;
+      display: block;
+      border-radius: 0;
+    }
+
+    .label-slot {
+      position: absolute;
+      display: none;
+      width: 28%;
+      min-height: 44px;
+      background: rgba(24, 24, 24, 0.88);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 7px 8px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+    }
+
+    .label-slot.active {
+      display: block;
+    }
+
+    .label-slot .label-title {
+      font-size: 8px;
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .label-slot .label-desc {
+      margin-top: 3px;
+      font-size: 6.5px;
+      line-height: 1.15;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+
+    .slot-1 {
+      left: 23%;
+      top: 42%;
+    }
+
+    .slot-2 {
+      left: 51%;
+      top: 39%;
+    }
+
+    .slot-3 {
+      left: 38%;
+      top: 55%;
+    }
+
+    .participation-note {
+      padding: 10px 0 22px;
+      text-align: center;
+      font-size: 9px;
+      font-weight: 300;
+      color: #555;
+    }
+
+    /* =========================
+       DESKTOP ADJUSTMENT
+    ========================= */
+
+    @media (min-width: 760px) {
+      .hero {
+        padding: 84px 72px 64px;
+      }
+
+      .hero::before {
+        left: -76px;
+        top: 118px;
+        width: 168px;
+        height: 168px;
+      }
+
+      .hero-meta {
+        font-size: 19px;
+      }
+
+      .hero-place {
+        font-size: 20px;
+      }
+
+      .hero-intro {
+        font-size: 16px;
+      }
+
+      .hero-intro strong {
+        font-size: 18px;
+      }
+
+      .before-section,
+      .intervention-section,
+      .observation-section,
+      .conclusion-section,
+      .participation-section {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .before-header,
+      .text-block,
+      .before-bottom-text {
+        padding-left: 36px;
+        padding-right: 36px;
+      }
+
+      .protocol-cards {
+        padding-left: 36px;
+        padding-right: 36px;
+      }
+
+      .intervention-section {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .intervention-title,
+      .intervention-intro,
+      .intervention-header {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .observation-img,
+      .observation-text-box {
+        min-height: 220px;
+      }
+
+      .observation-img {
+        height: 220px;
+      }
+
+      .observation-text-box {
+        padding: 28px 22px;
+      }
+
+      .observation-text-box h3 {
+        font-size: 17px;
+      }
+
+      .observation-text-box p,
+      .observation-intro {
+        font-size: 15px;
+      }
+
+      .observation-wide-text,
+      .observation-wide-img {
+        min-height: 240px;
+      }
+
+      .observation-wide-img {
+        height: 240px;
+      }
+
+      .observation-wide-text {
+        padding: 28px 22px;
+      }
+
+      .observation-wide-text h3 {
+        font-size: 17px;
+      }
+
+      .observation-wide-text p {
+        font-size: 15px;
+      }
+
+      .conclusion-section {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .participation-section {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .participation-intro {
+        font-size: 12px;
+        max-width: 520px;
+      }
+
+      .arrangement-form label {
+        font-size: 8px;
+      }
+
+      .arrangement-form input {
+        height: 26px;
+        font-size: 10px;
+      }
+
+      .arrangement-form button {
+        height: 22px;
+        font-size: 8px;
+      }
+
+      .label-slot {
+        min-height: 58px;
+        padding: 10px 12px;
+      }
+
+      .label-slot .label-title {
+        font-size: 12px;
+      }
+
+      .label-slot .label-desc {
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 00 HERO -->
+  <header class="hero">
+    <div class="hero-meta">
+      20230060 Gyuri Kim<br>
+      DS1(A) Project 3 : Protocol
+    </div>
+
+    <h1 class="hero-title">
+      Arrangement as<br>
+      Instruction
+    </h1>
+
+    <div class="hero-place">
+      N25 1F, 3D Printing Room
+    </div>
+
+    <div class="hero-intro">
+      <strong>Where do things go when no one tells you?</strong>
+      This project begins with a small disorder in the N25 3D printing room:
+      tools, beds, scraps, and finished prints sharing the same space.
+      By rearranging shelves, boxes, and labels, the room was given clearer
+      territories—and a quieter way to guide behavior.
+    </div>
+  </header>
+
+  <!-- 01 BEFORE -->
+  <section class="before-section">
+    <div class="before-header">
+      <div class="section-number">01 BEFORE</div>
+
+      <div class="before-heading-wrap">
+        <h2 class="before-title">
+          Implicit Protocol
+        </h2>
+        <div class="before-title-small">
+          on the site
+        </div>
+      </div>
+    </div>
+
+    <img
+      class="before-main-image"
+      src="images/before.jpg"
+      alt="Before state of the 3D printing room"
+    >
+
+    <div class="caption">Before</div>
+
+    <p class="text-block">
+      In the N25 3D printing room, the use of each box was mostly fixed.
+      There were clean beds for printing, tools for removing prints, and a place
+      for finished prints. However, before the intervention, these territories were
+      not clearly separated enough.
+    </p>
+
+    <div class="protocol-cards">
+      <div class="protocol-card">
+        <h3>Cleaned Beds</h3>
+        <p>
+          3D Printer Beds were left here before and after the print.
+        </p>
+      </div>
+
+      <div class="protocol-card">
+        <h3>Tools</h3>
+        <p>
+          Scrapers, hammers, and tools for removing prints from the bed.
+        </p>
+      </div>
+
+      <div class="protocol-card">
+        <h3>Finished Prints</h3>
+        <p>
+          Temporary storage for prints removed by someone else.
+        </p>
+      </div>
+    </div>
+
+    <div class="problems-title">Problems?</div>
+
+    <div class="problem-image-wrap">
+      <img src="images/Problems.jpg" alt="Problems in the 3D printing room">
+    </div>
+
+    <p class="before-bottom-text">
+      Before the intervention, tools, small prints, support scraps, and printer beds
+      shared the same visual field. The problem was not simply that the room was messy.
+      The problem was that the boundaries between different actions were weak.
+    </p>
+  </section>
+
+  <!-- 02 INTERVENTION -->
+  <section class="intervention-section">
+    <div class="intervention-topline"></div>
+
+    <div class="intervention-header">
+      <div></div>
+      <div class="intervention-number">02&nbsp;&nbsp;INTERVENTION</div>
+    </div>
+
+    <h2 class="intervention-title">
+      MAKING<br>
+      TERRITORIES
+    </h2>
+
+    <p class="intervention-intro">
+      I rearranged the space by adding a small shelf, separating containers, and
+      later adding labels. The goal was not to create a completely new rule, but
+      to make the existing categories physically and visually separate.
+    </p>
+
+    <div class="intervention-card">
+      <div class="card-label">P R O T O T Y P E</div>
+      <h3>Temporary shelf + simple name tags</h3>
+      <p>
+        The first prototype made the room easier to read. Fewer support scraps
+        and random parts were placed in the tool box. However, the shelf was too
+        small, and small prints could fall through the gap.
+      </p>
+
+      <details class="picture-toggle">
+        <summary>P I C T U R E S</summary>
+        <img src="images/prototype.jpg" alt="Prototype photo group">
+      </details>
+    </div>
+
+    <div class="intervention-card">
+      <div class="card-label">F I R S T&nbsp;&nbsp;I N S T A L L A T I O N</div>
+      <h3>Custom shelf made with basket and tension rods</h3>
+      <p>
+        After the purchased shelf did not fit the space, I made a new shelf using
+        a storage basket and tension rods. Even without name tags, the rough
+        division between tools, beds, and prints seemed to remain.
+      </p>
+
+      <details class="picture-toggle">
+        <summary>P I C T U R E S</summary>
+        <img src="images/first-installation.jpg" alt="First installation photo group">
+      </details>
+    </div>
+
+    <div class="intervention-card">
+      <div class="card-label">F U R T H E R&nbsp;&nbsp;C H A N G E S</div>
+      <h3>Labels + board marker</h3>
+      <p>
+        I added editable labels and placed a board marker nearby. However, no one
+        tried to rewrite the labels. I realized that the intervention did not
+        clearly invite participation yet.
+      </p>
+
+      <details class="picture-toggle">
+        <summary>P I C T U R E S</summary>
+        <img src="images/further.jpg" alt="Further changes photo group">
+      </details>
+    </div>
+  </section>
+
+  <!-- 03 OBSERVATION -->
+  <section class="observation-section">
+    <div class="observation-topline"></div>
+
+    <div class="observation-number">03 OBSERVATION</div>
+
+    <h2 class="observation-title">
+      WHAT CHANGED?
+    </h2>
+
+    <p class="observation-intro">
+      The intervention showed that arrangement can change behavior, but only
+      up to a point. It guided where people placed objects, but it could not
+      completely change what people felt allowed to touch.
+    </p>
+
+    <div class="observation-grid-figma">
+      <div class="observation-text-box light-box">
+        <h3>Separation of territories worked quite well.</h3>
+        <p>
+          Once the space was divided, the rough separation between tools,
+          beds, and prints seemed to remain even before clear name tags were
+          added.
+        </p>
+      </div>
+
+      <img
+        class="observation-img"
+        src="images/observation-1.jpg"
+        alt="User using the 3D printing room after the intervention"
+      >
+
+      <img
+        class="observation-img"
+        src="images/observation-2.jpg"
+        alt="Separated boxes and shelf after the intervention"
+      >
+
+      <div class="observation-text-box dark-box">
+        <h3>Some boundaries were social, not spatial.</h3>
+        <p>
+          People still tended to leave other people’s prints attached to the bed.
+          A shelf can suggest where finished prints should go, but it cannot
+          fully remove the hesitation of touching someone else’s fragile work.
+        </p>
+      </div>
+    </div>
+
+    <div class="observation-wide-row">
+      <div class="observation-wide-text">
+        <h3>Pre-existing protocols were too strong.</h3>
+        <p>
+          An attempt was made to allow users to arbitrarily change the
+          configuration of each space, but the pre-existing protocol that was
+          previously used and that was created through my organization was too
+          powerful. The students did not bother to reorganize the space by
+          rearranging what had been organized.
+        </p>
+      </div>
+
+      <img
+        class="observation-wide-img"
+        src="images/observation-3.jpg"
+        alt="Editable label on the finished prints basket"
+      >
+    </div>
+  </section>
+
+  <!-- 04 CONCLUSION -->
+  <section class="conclusion-section">
+    <div class="conclusion-number">04 CONCLUSION</div>
+
+    <h2 class="conclusion-title">
+      Space Can Suggest,<br>
+      But Not Force
+    </h2>
+
+    <p class="conclusion-text">
+      The arrangement guided small actions: where to put tools, where to return
+      beds, and where not to place scraps. But it also revealed a limit. Spatial
+      boundaries can make behavior easier, but they do not automatically solve
+      social hesitation.
+    </p>
+  </section>
+
+  <!-- 05 VISITOR PARTICIPATION -->
+  <section class="participation-section">
+    <div class="participation-number">05 VISITOR PARTICIPATION</div>
+
+    <h2 class="participation-title">
+      Some Better<br>
+      Arrangements?
+    </h2>
+
+    <p class="participation-intro">
+      My arrangement changed some behaviors, but not all of them. If you use this
+      room, you may know better than I do: what kind of area, label, or container
+      would make the protocol clearer?
+    </p>
+
+    <form class="arrangement-form" id="arrangementForm">
+      <label for="areaName">A R E A&nbsp;&nbsp; N A M E</label>
+      <input
+        id="areaName"
+        type="text"
+        maxlength="24"
+        placeholder="e.g Fragile prints"
+      >
+
+      <label for="areaExplanation">E X P L A N A T I O N S</label>
+      <input
+        id="areaExplanation"
+        type="text"
+        maxlength="70"
+        placeholder="e.g What should be in there? Why?"
+      >
+
+      <button type="submit" id="addArrangement">ADD</button>
+    </form>
+
+    <div class="arrangement-stage">
+      <img src="images/blank.jpg" alt="Blank 3D printing room surface">
+
+      <div class="label-slot slot-1" id="slot1"></div>
+      <div class="label-slot slot-2" id="slot2"></div>
+      <div class="label-slot slot-3" id="slot3"></div>
+    </div>
+
+    <p class="participation-note" id="participationNote">
+      Add up to three suggested arrangements.
+    </p>
+  </section>
+
+  <script>
+    const arrangementForm = document.getElementById("arrangementForm");
+    const areaNameInput = document.getElementById("areaName");
+    const areaExplanationInput = document.getElementById("areaExplanation");
+    const addArrangementButton = document.getElementById("addArrangement");
+    const participationNote = document.getElementById("participationNote");
+
+    const slots = [
+      document.getElementById("slot1"),
+      document.getElementById("slot2"),
+      document.getElementById("slot3")
+    ];
+
+    let arrangementCount = 0;
+
+    function fillSlot(slot, areaName, explanation) {
+      slot.textContent = "";
+
+      const title = document.createElement("div");
+      title.className = "label-title";
+      title.textContent = areaName || "Unnamed Area";
+
+      const desc = document.createElement("div");
+      desc.className = "label-desc";
+      desc.textContent = explanation || "No explanation added.";
+
+      slot.appendChild(title);
+      slot.appendChild(desc);
+      slot.classList.add("active");
+    }
+
+    arrangementForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const areaName = areaNameInput.value.trim();
+      const explanation = areaExplanationInput.value.trim();
+
+      if (!areaName && !explanation) {
+        participationNote.textContent = "Type an area name or an explanation first.";
+        return;
+      }
+
+      if (arrangementCount >= 3) {
+        participationNote.textContent = "You have already added three suggested arrangements.";
+        return;
+      }
+
+      fillSlot(slots[arrangementCount], areaName, explanation);
+
+      arrangementCount += 1;
+
+      areaNameInput.value = "";
+      areaExplanationInput.value = "";
+
+      if (arrangementCount === 3) {
+        addArrangementButton.disabled = true;
+        participationNote.textContent = "Three suggestions added. The space is now full.";
+      } else {
+        participationNote.textContent = `${3 - arrangementCount} more suggestion(s) can be added.`;
+      }
+    });
+  </script>
+
+</body>
+</html>
